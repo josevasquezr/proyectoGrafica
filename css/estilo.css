@@ -25,8 +25,9 @@ header ul{
 }
 
 header ul li{
-	font-family: sans-serif;
+	font-family: Arial;
 	color: white;
+	font-size: 20px;
 }
 
 /*----------------------------*/
@@ -56,6 +57,9 @@ header ul li{
 	padding: 10px;
 	border: 1px solid #0E8B6C;
 	border-radius: 5px;
+
+	font-family: Arial;
+	font-size: 15px;
 }
 
 

@@ -45,8 +45,97 @@ window.onload = function(){
 								)
 							)
 						);
+	// funciones de llenado
+	function llenarCategorias(){
+		var select = document.getElementsByClassName("categorias")[0];
+		var newOption;
+		for(categoria in categorias){
+			newOption = document.createElement("option");
+			newOption.innerHTML = categorias[categoria];
+			select.appendChild(newOption);
+		}
+	}
+
+	function llenarProductos(indiceCategoria){
+		var select = document.getElementsByClassName("productos")[0];
+		var newOption;
+		for(producto in productos[indiceCategoria]){
+			newOption = document.createElement("option");
+			newOption.innerHTML = productos[indiceCategoria][producto];
+			select.appendChild(newOption);
+		}	
+	}
+
+	function llenarMarcas(indiceCategoria, indiceProducto){
+		var select = document.getElementsByClassName("marcas")[0];
+		var newOption;
+		for(marca in marcas[indiceCategoria][indiceProducto]){
+			newOption = document.createElement("option");
+			newOption.innerHTML = marcas[indiceCategoria][indiceProducto][marca];
+			select.appendChild(newOption);
+		}	
+	}
+
+	function ventas(indiceCategoria, indiceProducto, indiceMarca){
+		return ventasMensuales[indiceCategoria][indiceProducto][indiceMarca];
+	}
+	//----------------------------------------------------------------------
+
+	// eventos y funciones para onchange	
+	function changeProductos(){
+		var indiceCategoria;
+		var indiceProducto;
+		for (var i = 0; i < categorias.length; i++) {
+			if(categorias[i] == document.getElementsByClassName("categorias")[0].value){
+				indiceCategoria = i;
+				break;
+			}
+		}
+
+		for (var i = 0; i < productos[indiceCategoria].length; i++) {
+			if(productos[indiceCategoria][i] == document.getElementsByClassName("productos")[0].value){
+				indiceProducto = i;
+				break;
+			}
+		}		
+
+		var selectMarcas = document.getElementsByClassName("marcas")[0];
+		selectMarcas.innerHTML = "";
+		llenarMarcas(indiceCategoria, indiceProducto);
+	}
+
+	var selectProductos = document.getElementsByClassName("productos")[0];
+	selectProductos.addEventListener("change", changeProductos);
+
+
+
+	function changeCategorias(){
+		var indiceCategoria;
+		for (var i = 0; i < categorias.length; i++) {
+			if(categorias[i] == this.value){
+				indiceCategoria = i;
+				break;
+			}
+		}
+
+		var selectProductos = document.getElementsByClassName("productos")[0];
+		selectProductos.innerHTML = "";
+		llenarProductos(indiceCategoria);
+
+		changeProductos();
+
+	}
+
+	var selectCategoria = document.getElementsByClassName("categorias")[0];
+	selectCategoria.addEventListener("change", changeCategorias);
 
 	
 	
+	//------------------------------------------------------------------------
 
+
+
+	llenarCategorias();
+	llenarProductos(0);
+	llenarMarcas(0, 0);
 }

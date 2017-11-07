@@ -9,6 +9,7 @@ header{
 	width: 100%;
 	background-color: #0E8B6C;
 	padding: 10px;
+	margin-bottom: 20px;
 }
 
 header ul{
@@ -41,6 +42,7 @@ header ul li{
 
 	padding: 10px;
 	width: 100%;
+	margin-bottom: 30px;
 }
 
 .selectGroup{

@@ -18,30 +18,30 @@ window.onload = function(){
 	var ventasMensuales = new Array(
 							new Array(
 								new Array(
-									new Array(20, 31, 42, 25), 
-									new Array(12, 10, 5, 15)
+									new Array(20, 31, 42, 25, 10, 50), 
+									new Array(12, 10, 5, 15, 20, 15)
 								), 
 								new Array(
-									new Array(50, 60, 25, 33), 
-									new Array(3, 16, 8, 7)
+									new Array(50, 60, 25, 33, 4, 12), 
+									new Array(3, 16, 8, 7, 30, 13)
 								), 
 								new Array(
-									new Array(40, 76, 22, 15), 
-									new Array(41, 28, 24, 11)
+									new Array(40, 76, 22, 15, 3, 1), 
+									new Array(41, 28, 24, 11, 4, 3)
 								)
 							),
 							new Array(
 								new Array(
-									new Array(2, 6, 8, 1), 
-									new Array(12, 22, 2, 6)
+									new Array(2, 6, 8, 1, 60, 20), 
+									new Array(12, 22, 2, 6, 35, 5)
 								), 
 								new Array(
-									new Array(4, 7, 16, 45), 
-									new Array(10, 40, 25, 2)
+									new Array(4, 7, 16, 45, 40, 0), 
+									new Array(10, 40, 25, 2, 6, 3)
 								), 
 								new Array(
-									new Array(18, 9, 4, 8), 
-									new Array(19, 7, 1, 4)
+									new Array(18, 9, 4, 8, 7, 20), 
+									new Array(19, 7, 1, 4, 12, 30)
 								)
 							)
 						);
@@ -159,7 +159,71 @@ window.onload = function(){
 		}
 
 		var valoresVentas = ventas(indiceCategoria, indiceProducto, indiceMarca);
-		alert(valoresVentas);
+
+
+		// Create the chart
+		Highcharts.chart('container', {
+		    chart: {
+		        type: 'column'
+		    },
+		    title: {
+		        text: 'Ventas Mensuales. Enero del 2017 a Junio del 2017'
+		    },
+		    subtitle: {
+		        text: 'Agile Solutions'
+		    },
+		    xAxis: {
+		        type: 'category'
+		    },
+		    yAxis: {
+		        title: {
+		            text: 'Rango en Ventas ( Cantidad )'
+		        }
+
+		    },
+		    legend: {
+		        enabled: false
+		    },
+		    plotOptions: {
+		        series: {
+		            borderWidth: 0,
+		            dataLabels: {
+		                enabled: true,
+		                format: '{point.y:.1f}%'
+		            }
+		        }
+		    },
+
+		    tooltip: {
+		        headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+		        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
+		    },
+
+		    series: [{
+		        name: 'Brands',
+		        colorByPoint: true,
+		        data: [{
+		            name: 'Enero',
+		            y: valoresVentas[0],
+		        }, {
+		            name: 'Febrero',
+		            y: valoresVentas[1],
+		        }, {
+		            name: 'Marzo',
+		            y: valoresVentas[2],
+		        }, {
+		            name: 'Abril',
+		            y: valoresVentas[3],
+		        }, {
+		            name: 'Mayo',
+		            y: valoresVentas[4],
+		        }, {
+		            name: 'Junio',
+		            y: valoresVentas[5],
+		        }]
+		    }]
+		});
+		
 	}
 
 	var selectMarca = document.getElementsByClassName("marcas")[0];
@@ -172,4 +236,5 @@ window.onload = function(){
 	llenarCategorias();
 	llenarProductos(0);
 	llenarMarcas(0, 0);
+	ventasValoresGrafica();
 }

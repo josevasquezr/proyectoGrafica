@@ -102,6 +102,8 @@ window.onload = function(){
 		var selectMarcas = document.getElementsByClassName("marcas")[0];
 		selectMarcas.innerHTML = "";
 		llenarMarcas(indiceCategoria, indiceProducto);
+
+		ventasValoresGrafica();
 	}
 
 	var selectProductos = document.getElementsByClassName("productos")[0];
@@ -129,8 +131,40 @@ window.onload = function(){
 	var selectCategoria = document.getElementsByClassName("categorias")[0];
 	selectCategoria.addEventListener("change", changeCategorias);
 
-	
-	
+
+	function ventasValoresGrafica(){
+		var indiceCategoria;
+		var indiceProducto;
+		var indiceMarca;
+
+		for (var i = 0; i < categorias.length; i++) {
+			if(categorias[i] == document.getElementsByClassName("categorias")[0].value){
+				indiceCategoria = i;
+				break;
+			}
+		}
+
+		for (var i = 0; i < productos[indiceCategoria].length; i++) {
+			if(productos[indiceCategoria][i] == document.getElementsByClassName("productos")[0].value){
+				indiceProducto = i;
+				break;
+			}
+		}
+
+		for (var i = 0; i < marcas[indiceCategoria][indiceProducto].length; i++) {
+			if(marcas[indiceCategoria][indiceProducto][i] == document.getElementsByClassName("marcas")[0].value){
+				indiceMarca = i;
+				break;
+			}
+		}
+
+		var valoresVentas = ventas(indiceCategoria, indiceProducto, indiceMarca);
+		alert(valoresVentas);
+	}
+
+	var selectMarca = document.getElementsByClassName("marcas")[0];
+	selectMarca.addEventListener("change", ventasValoresGrafica);
+
 	//------------------------------------------------------------------------
 
 

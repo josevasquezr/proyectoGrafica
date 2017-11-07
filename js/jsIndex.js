@@ -2,7 +2,7 @@ window.onload = function(){
 	var categorias = new Array("Ropa", "Alimentos");
 	var productos = new Array(
 							new Array("Camisas", "Pantalones", "Calsonetas"), 
-							new Array("Frutas", "Verduras", "Condimentos")
+							new Array("Pan", "Aceite", "Condimentos")
 							);
 	var marcas = new Array(
 						new Array(
@@ -10,9 +10,9 @@ window.onload = function(){
 							new Array("Pepe", "Massimo"), 
 							new Array("Nike", "Adidas")),
 						new Array(
-							new Array("Manzana", "Pera"), 
-							new Array("Pataste", "Papa"), 
-							new Array("Especias", "Canela"))
+							new Array("Monarca", "Bimbo"), 
+							new Array("Mazola", "Clover"), 
+							new Array("Don Julio", "Maggie"))
 						);
 
 	var ventasMensuales = new Array(
